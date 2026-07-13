@@ -228,14 +228,10 @@ function WebGLOriginalFluid() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Desactivamos la carga de Shaders y WebGL en móvil (<768px) para optimizar rendimiento
-    if (window.innerWidth < 768) {
-      return;
-    }
-
     const container = containerRef.current;
     if (!container) return;
 
+    const isMobileDevice = window.innerWidth < 768;
     const width = container.clientWidth;
     const height = container.clientHeight;
 
@@ -252,19 +248,23 @@ function WebGLOriginalFluid() {
       depth: false,
     });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    // En móviles fijamos pixelRatio a 1.0 para mejorar el rendimiento de shaders
+    renderer.setPixelRatio(isMobileDevice ? 1.0 : Math.min(window.devicePixelRatio, 1.5));
     renderer.autoClear = false;
     container.appendChild(renderer.domElement);
 
-    // Ping Pong Render Targets
-    let targetA = new THREE.WebGLRenderTarget(width, height, {
+    // Ping Pong Render Targets (Para móvil corremos la simulación a mitad de resolución, reduciendo la carga 75%)
+    const targetWidth = isMobileDevice ? Math.floor(width / 2) : width;
+    const targetHeight = isMobileDevice ? Math.floor(height / 2) : height;
+
+    let targetA = new THREE.WebGLRenderTarget(targetWidth, targetHeight, {
       minFilter: THREE.LinearFilter,
       magFilter: THREE.LinearFilter,
       format: THREE.RGBAFormat,
       type: THREE.HalfFloatType,
     });
 
-    let targetB = new THREE.WebGLRenderTarget(width, height, {
+    let targetB = new THREE.WebGLRenderTarget(targetWidth, targetHeight, {
       minFilter: THREE.LinearFilter,
       magFilter: THREE.LinearFilter,
       format: THREE.RGBAFormat,
@@ -383,8 +383,12 @@ function WebGLOriginalFluid() {
       fluidMaterial.uniforms.iResolution.value.set(w, h);
       colorMaterial.uniforms.iResolution.value.set(w, h);
       transitionMaterial.uniforms.iResolution?.value?.set?.(w, h); // Si se agregara
-      targetA.setSize(w, h);
-      targetB.setSize(w, h);
+      
+      const isMobile = window.innerWidth < 768;
+      const tw = isMobile ? Math.floor(w / 2) : w;
+      const th = isMobile ? Math.floor(h / 2) : h;
+      targetA.setSize(tw, th);
+      targetB.setSize(tw, th);
     };
     window.addEventListener("resize", handleResize);
 
@@ -758,6 +762,14 @@ function MacOsFolder({ title, label, href, items }: MacOsFolderProps) {
 // ============================================================================
 function BifurcacionSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // Vinculamos la escala y bordes al scroll de Lenis/Ventana
   const { scrollYProgress } = useScroll({
@@ -770,15 +782,15 @@ function BifurcacionSection() {
   const padding = useTransform(scrollYProgress, [0, 1.0], ["24px", "0px"]);
 
   return (
-    <div ref={containerRef} className="relative min-h-screen md:h-screen bg-white z-20 overflow-visible md:overflow-hidden">
+    <div ref={containerRef} className="relative min-h-screen md:h-screen bg-black md:bg-white z-20 overflow-visible md:overflow-hidden">
       <motion.div
         style={{
-          scale,
-          borderRadius,
-          paddingLeft: padding,
-          paddingRight: padding,
+          scale: isMobile ? 1 : scale,
+          borderRadius: isMobile ? "0px" : borderRadius,
+          paddingLeft: isMobile ? "0px" : padding,
+          paddingRight: isMobile ? "0px" : padding,
           width: "100%",
-          height: "100%"
+          height: isMobile ? "auto" : "100%"
         }}
         className="bg-black text-white flex flex-col justify-between pt-6 px-6 sm:px-12 w-full h-auto md:h-full relative pb-24 md:pb-12"
       >
