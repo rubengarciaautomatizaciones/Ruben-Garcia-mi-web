@@ -594,7 +594,7 @@ function ScrollStatementSection() {
 
   return (
     <div ref={sectionRef} className="relative h-[250vh] md:h-[450vh] bg-white z-20">
-      <div className="sticky top-0 h-screen w-full flex flex-col justify-center px-6 sm:px-16 md:px-24">
+      <div className="sticky top-0 h-screen w-full flex flex-col justify-start pt-28 md:justify-center md:pt-0 px-6 sm:px-16 md:px-24">
         <p className="flex flex-col gap-2 sm:gap-4 m-0 max-w-7xl w-full mx-auto">
           {parsedLines.map((line, lineIdx) => (
             <span
@@ -762,14 +762,6 @@ function MacOsFolder({ title, label, href, items }: MacOsFolderProps) {
 // ============================================================================
 function BifurcacionSection() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
 
   // Vinculamos la escala y bordes al scroll de Lenis/Ventana
   const { scrollYProgress } = useScroll({
@@ -782,17 +774,17 @@ function BifurcacionSection() {
   const padding = useTransform(scrollYProgress, [0, 1.0], ["24px", "0px"]);
 
   return (
-    <div ref={containerRef} className="relative min-h-screen md:h-screen bg-black md:bg-white z-20 overflow-visible md:overflow-hidden">
+    <div ref={containerRef} className="relative h-[130vh] md:h-screen bg-black md:bg-white z-20 overflow-visible md:overflow-hidden">
       <motion.div
         style={{
-          scale: isMobile ? 1 : scale,
-          borderRadius: isMobile ? "0px" : borderRadius,
-          paddingLeft: isMobile ? "0px" : padding,
-          paddingRight: isMobile ? "0px" : padding,
+          scale,
+          borderRadius,
+          paddingLeft: padding,
+          paddingRight: padding,
           width: "100%",
-          height: isMobile ? "auto" : "100%"
+          height: "100%"
         }}
-        className="bg-black text-white flex flex-col justify-between pt-6 px-6 sm:px-12 w-full h-auto md:h-full relative pb-24 md:pb-12"
+        className="bg-black text-white flex flex-col justify-between pt-6 px-6 sm:px-12 w-full h-full relative pb-24 md:pb-12"
       >
         {/* Cabecera de la Sección (pt-36 en desktop para aire, pt-16 en móvil) */}
         <div className="w-full flex flex-col items-center mt-6 md:mt-12 pt-16 md:pt-36">
@@ -853,7 +845,8 @@ export function Home() {
   }, []);
 
   useEffect(() => {
-    if (!isShrunk) {
+    // Solo auto-cerramos el menú al subir arriba si no estamos en móvil (pantallas >= 768px)
+    if (!isShrunk && window.innerWidth >= 768) {
       setIsMobileMenuOpen(false);
     }
   }, [isShrunk]);
@@ -881,7 +874,8 @@ export function Home() {
       >
         <motion.nav
           onClick={(e) => {
-            if (isShrunk) {
+            const isMobile = window.innerWidth < 768;
+            if (isShrunk || isMobile) {
               const target = e.target as HTMLElement;
               if (target.closest('a')) return;
               setIsMobileMenuOpen(!isMobileMenuOpen);

@@ -36,7 +36,8 @@ rubengarcia.tech
 │
 ├── /confirmacionminicurso ── Thank-You Page post-registro del MiniCurso
 ├── /success ──────────────── Page de destino tras compra de cualquier producto B2C (Stripe redirect)
-└── /contacto ─────────────── Formulario General Tally de contacto y cualificación
+├── /contacto ─────────────── Formulario General Tally de contacto y cualificación
+└── /links ────────────────── Hub de enlaces rápidos (tipo linktree) para redes sociales
 ```
 
 ---
@@ -128,6 +129,19 @@ rubengarcia.tech
 #### F. Contacto (`/contacto`)
 *   **Propósito:** Ofrecer un canal de comunicación directo y centralizado para propuestas, consultas generales o cualificación preliminar.
 *   **CTA:** Formulario Tally general embebido directamente en la página de forma responsiva y con estilo transparente.
+
+#### G. Enlaces Rápidos / Redes (`/links`)
+*   **Propósito:** Hub móvil de alta conversión para derivar tráfico calificado de Instagram, TikTok, LinkedIn y X (Twitter) a los dos universos de negocio.
+*   **Diseño:**
+    *   Diseño brutalista 100% monocromático, centrado y optimizado para pantallas móviles (mobile-first).
+    *   Cabecera limpia con avatar minimalista o logo, y descripción corta de estatus anti-humo.
+    *   Lista vertical de botones brutalistas rectangulares de alto contraste (borde fino, hovers que invierten colores blanco/negro).
+    *   Ausencia de barra de navegación para evitar la dispersión del usuario. Solo un enlace sutil al pie para volver a la Home principal.
+*   **Enlaces Prioritarios:**
+    *   *Sección B2B:* "Optimizar Operaciones de mi Empresa (Automatizaciones e IA)" -> Redirige a `/empresas`.
+    *   *Sección B2C:* "Acceder al Arsenal de Recursos (IA Sin Paja y Bóvedas)" -> Redirige a `/arsenal`.
+    *   *Sección Directa:* "IA Sin Paja: Formación y Sistema Anti-Humo" -> Redirige a `/arsenal/iasinpaja`.
+    *   *Contacto:* "Contacto Directo / Cualificación" -> Redirige a `/contacto`.
 
 ---
 
