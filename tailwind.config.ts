@@ -60,7 +60,7 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
-        display: ['Space Grotesk', 'sans-serif'],
+        display: ['Inter', 'sans-serif'],
       },
       keyframes: {
         "accordion-down": {

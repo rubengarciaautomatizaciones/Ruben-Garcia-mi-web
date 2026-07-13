@@ -25,11 +25,9 @@ rubengarcia.tech
 ├── /empresas ─────────────── Ecosistema B2B (Landing de servicios, enfoque SISTEMIA)
 │   ├── /empresas/automatizacion ── "Arquitectura de Sistemas" (DFY) -> Formulario Tally
 │   ├── /empresas/consultoria ───── "Consultoría Estratégica" (DWY) -> Formulario Tally
-│   └── (Links a embudos dedicados de Nexus y Diseño Web)
-│
-├── /sistema-nexus ────────── Funnel B2B: Lead Gen con IA (Consultoras) -> Formulario Tally
-├── /sistema-nexus-industrial ─ Funnel B2B: Lead Gen con IA (Sector Industrial) -> Formulario Tally
-├── /diseñoweb ────────────── Funnel B2B: Desarrollo Web High-Ticket -> Formulario Tally
+│   ├── /empresas/sistema-nexus ─── Lead Gen con IA (Consultoras) -> Formulario Tally
+│   ├── /empresas/sistema-nexus-industrial ─ Lead Gen con IA (Sector Industrial) -> Formulario Tally
+│   └── /empresas/diseno-web ────── Desarrollo Web High-Ticket -> Formulario Tally
 │
 ├── /arsenal ──────────────── Ecosistema B2C (Hub/Escaparate principal + Lead Magnet MiniCurso)
 │   ├── /arsenal/iasinpaja ── Guía / Curso de Notion "IA Sin Paja" -> Pago Stripe
@@ -37,7 +35,8 @@ rubengarcia.tech
 │   └── /arsenal/prompts ──── Pago único "Bóveda de Prompts" -> Pago Stripe
 │
 ├── /confirmacionminicurso ── Thank-You Page post-registro del MiniCurso
-└── /success ──────────────── Page de destino tras compra de cualquier producto B2C (Stripe redirect)
+├── /success ──────────────── Page de destino tras compra de cualquier producto B2C (Stripe redirect)
+└── /contacto ─────────────── Formulario General Tally de contacto y cualificación
 ```
 
 ---
@@ -69,8 +68,8 @@ rubengarcia.tech
     2.  **Sección de Servicios (Grid):**
         *   **Card 1 (Arquitectura de Sistemas):** Explicación del servicio DFY. Link a `/empresas/automatizacion`.
         *   **Card 2 (Consultoría Estratégica):** Sesiones 1-on-1. Link a `/empresas/consultoria`.
-        *   **Card 3 (Sistema Nexus / Nexus Industrial):** Lead Gen outbound automatizado. Link a `/sistema-nexus`.
-        *   **Card 4 (Diseño Web High-Ticket):** Rediseño brutalista enfocado en estatus y conversión. Link a `/diseñoweb`.
+        *   **Card 3 (Sistema Nexus / Nexus Industrial):** Lead Gen outbound automatizado. Link a `/empresas/sistema-nexus`.
+        *   **Card 4 (Diseño Web High-Ticket):** Rediseño brutalista enfocado en estatus y conversión. Link a `/empresas/diseno-web`.
     3.  **Sección de Autoridad:** "No soy una agencia. Soy Rubén." Copy anti-humo enfocado en que no hay fruta fresca ni futbolín; hay lógica de ingeniería.
     4.  **CTA General:** Enlace a formulario general de Tally.
 
@@ -80,11 +79,11 @@ rubengarcia.tech
 #### C. Consultoría Estratégica (`/empresas/consultoria`)
 *   **CTA:** Formulario Tally para agendar (o pasarela previa).
 
-#### D. Sistema Nexus (`/sistema-nexus` y `/sistema-nexus-industrial`)
+#### D. Sistema Nexus (`/empresas/sistema-nexus` y `/empresas/sistema-nexus-industrial`)
 *   **Diseño:** Tema oscuro absoluto. Componente interactivo animado (`<NexusAnimation />` monocromático) mostrando las fases de la prospección automatizada.
-*   **CTA:** Redirección a formularios específicos de Tally en `/sistema-nexus/form` y `/sistema-nexus-industrial/form`.
+*   **CTA:** Redirección a formularios específicos de Tally en `/empresas/sistema-nexus/form` y `/empresas/sistema-nexus-industrial/form`.
 
-#### E. Desarrollo Web (`/diseñoweb`)
+#### E. Desarrollo Web (`/empresas/diseno-web`)
 *   **Propósito:** Convertir leads conseguidos mediante llamadas en frío (Cold Calls) que necesitan rediseñar su web.
 *   **CTA:** Botón hacia formulario Tally de cualificación específico para diseño web.
 
@@ -125,6 +124,10 @@ rubengarcia.tech
 #### E. Página de Éxito de Compra (`/success`)
 *   **Propósito:** Redirección automática desde Stripe después de que un usuario compra con éxito cualquier producto B2C.
 *   **Diseño:** Centrado, limpio, con mensaje claro de éxito de pago, instrucciones de acceso y un botón para volver al `/arsenal` o al inicio.
+
+#### F. Contacto (`/contacto`)
+*   **Propósito:** Ofrecer un canal de comunicación directo y centralizado para propuestas, consultas generales o cualificación preliminar.
+*   **CTA:** Formulario Tally general embebido directamente en la página de forma responsiva y con estilo transparente.
 
 ---
 

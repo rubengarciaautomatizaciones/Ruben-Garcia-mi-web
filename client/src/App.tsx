@@ -3,6 +3,7 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { ReactLenis } from "lenis/react";
 
 // Importación de Páginas
 import { Home } from "@/pages/Home";
@@ -18,6 +19,7 @@ import { Expertos } from "@/pages/arsenal/Expertos";
 import { Prompts } from "@/pages/arsenal/Prompts";
 import { ConfirmacionMiniCurso } from "@/pages/arsenal/ConfirmacionMiniCurso";
 import { Success } from "@/pages/Success";
+import { Contacto } from "@/pages/Contacto";
 import { NotFound } from "@/pages/not-found";
 
 function Router() {
@@ -30,9 +32,9 @@ function Router() {
       <Route path="/empresas" component={EmpresasLanding} />
       <Route path="/empresas/automatizacion" component={Automatizacion} />
       <Route path="/empresas/consultoria" component={Consultoria} />
-      <Route path="/sistema-nexus" component={Nexus} />
-      <Route path="/sistema-nexus-industrial" component={NexusIndustrial} />
-      <Route path="/diseñoweb" component={DisenoWeb} />
+      <Route path="/empresas/sistema-nexus" component={Nexus} />
+      <Route path="/empresas/sistema-nexus-industrial" component={NexusIndustrial} />
+      <Route path="/empresas/diseno-web" component={DisenoWeb} />
 
       {/* Universo B2C (Profesionales) */}
       <Route path="/arsenal" component={ArsenalHub} />
@@ -43,6 +45,7 @@ function Router() {
       {/* Utilidades y Páginas de Éxito */}
       <Route path="/confirmacionminicurso" component={ConfirmacionMiniCurso} />
       <Route path="/success" component={Success} />
+      <Route path="/contacto" component={Contacto} />
 
       {/* 404 */}
       <Route component={NotFound} />
@@ -54,8 +57,10 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Toaster />
-        <Router />
+        <ReactLenis root>
+          <Toaster />
+          <Router />
+        </ReactLenis>
       </TooltipProvider>
     </QueryClientProvider>
   );

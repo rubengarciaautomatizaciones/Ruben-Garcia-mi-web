@@ -1,0 +1,55 @@
+# Dependencias
+node_modules/
+jspm_packages/
+
+# Builds y producción
+dist/
+tmp/
+out/
+.next/
+.nuxt/
+.cache/
+
+# Entornos y secretos
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Archivos del sistema y editores
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.idea/
+.vscode/
+*.suo
+*.ntvsca*
+*.njsproj
+*.sln
+*.sw?
+
+# Carpetas locales de documentación e inspiración (Petición de Rubén)
+inspiracion_diseno/
+recursos_copywriting/
+web_actual_txt/
+docs/
+*.png
+*.jpg
+*.jpeg
+*.svg
+*.webp
+*.mp4
+!client/src/assets/**/*

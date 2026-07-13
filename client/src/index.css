@@ -35,12 +35,18 @@
     --ring: 0 0% 100%;
     
     --radius: 0rem;                /* Brutalist: 0px rounded corners */
+    
+    /* Variables de tipografía fluida de new.studio */
+    --font-size-h1: clamp(2.3125rem, 0.85rem + 6vw, 6.25rem);
+    --font-leading-h1: clamp(3.125rem, 1.7786rem + 5.5238vw, 6.75rem);
+    --font-size-h2: clamp(2rem, 1.2958rem + 3.0047vw, 4rem);
+    --font-leading-h2: clamp(2.5rem, 1.8036rem + 2.8571vw, 4.375rem);
   }
 }
 
 @layer base {
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
     background-color: #000000;
   }
 
@@ -50,7 +56,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
     @apply font-bold tracking-tight text-white;
   }
 }
@@ -88,4 +94,22 @@
   background-image: linear-gradient(to right, #262626 1px, transparent 1px),
                     linear-gradient(to bottom, #262626 1px, transparent 1px);
   background-size: 40px 40px;
+}
+
+/* Lenis smooth scrolling rules */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overflow: clip;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
