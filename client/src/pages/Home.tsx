@@ -594,7 +594,7 @@ function ScrollStatementSection() {
 
   return (
     <div ref={sectionRef} className="relative h-[250vh] md:h-[450vh] bg-white z-20">
-      <div className="sticky top-0 h-screen w-full flex flex-col justify-start pt-28 md:justify-center md:pt-0 px-6 sm:px-16 md:px-24">
+      <div className="sticky top-0 h-screen w-full flex flex-col justify-center px-6 sm:px-16 md:px-24">
         <p className="flex flex-col gap-2 sm:gap-4 m-0 max-w-7xl w-full mx-auto">
           {parsedLines.map((line, lineIdx) => (
             <span
@@ -657,7 +657,7 @@ function MacOsFolder({ title, label, href, items }: MacOsFolderProps) {
       <a
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="w-full max-w-[280px] xs:max-w-[320px] md:max-w-[400px] min-w-0 md:min-w-[320px] flex-shrink-0 flex flex-col justify-center items-center cursor-pointer select-none relative group py-6 md:py-8"
+        className="w-full max-w-[280px] xs:max-w-[320px] md:max-w-[400px] min-w-[260px] xs:min-w-[300px] md:min-w-[320px] shrink-0 flex flex-col justify-center items-center cursor-pointer select-none relative group py-6 md:py-8"
         style={{ perspective: 1200 }}
       >
         <div className="w-full aspect-[1004/841] relative flex flex-col items-center justify-end">
@@ -774,17 +774,18 @@ function BifurcacionSection() {
   const padding = useTransform(scrollYProgress, [0, 1.0], ["24px", "0px"]);
 
   return (
-    <div ref={containerRef} className="relative h-[130vh] md:h-screen bg-black md:bg-white z-20 overflow-visible md:overflow-hidden">
+    <div ref={containerRef} className="relative min-h-[130vh] md:min-h-screen bg-black md:bg-white z-20 overflow-visible md:overflow-hidden">
       <motion.div
         style={{
           scale,
           borderRadius,
+          transformOrigin: "bottom center",
           paddingLeft: padding,
           paddingRight: padding,
           width: "100%",
-          height: "100%"
+          minHeight: "100vh"
         }}
-        className="bg-black text-white flex flex-col justify-between pt-6 px-6 sm:px-12 w-full h-full relative pb-24 md:pb-12"
+        className="bg-black text-white flex flex-col justify-between pt-6 px-6 sm:px-12 w-full relative pb-24 md:pb-12"
       >
         {/* Cabecera de la Sección (pt-36 en desktop para aire, pt-16 en móvil) */}
         <div className="w-full flex flex-col items-center mt-6 md:mt-12 pt-16 md:pt-36">
@@ -917,7 +918,7 @@ export function Home() {
             {/* Es visible siempre en móvil, y en desktop se muestra SOLO cuando se encoge la navbar */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`flex flex-col justify-center items-center gap-1.5 w-7 h-7 cursor-pointer focus:outline-none relative transition-all duration-300 ${isShrunk || isMobileMenuOpen ? "opacity-100 scale-100" : "sm:opacity-0 sm:scale-0 pointer-events-none sm:w-0 sm:h-0"
+              className={`flex flex-col justify-center items-center gap-1.5 w-7 h-7 cursor-pointer focus:outline-none relative transition-all duration-300 ${isShrunk || isMobileMenuOpen ? "opacity-100 scale-100" : "sm:opacity-0 sm:scale-0 sm:pointer-events-none sm:w-0 sm:h-0"
                 }`}
             >
               <span className={`bg-[#000014] block h-0.5 w-full transition-all duration-300 ease-in-out ${isMobileMenuOpen ? "translate-y-1 rotate-45" : ""}`} />
