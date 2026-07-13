@@ -228,6 +228,11 @@ function WebGLOriginalFluid() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Desactivamos la carga de Shaders y WebGL en móvil (<768px) para optimizar rendimiento
+    if (window.innerWidth < 768) {
+      return;
+    }
+
     const container = containerRef.current;
     if (!container) return;
 
@@ -584,7 +589,7 @@ function ScrollStatementSection() {
   const TEXT_END = 0.9; // El texto se ilumina completamente al llegar al 90% del scroll de la sección
 
   return (
-    <div ref={sectionRef} className="relative h-[450vh] bg-white z-20">
+    <div ref={sectionRef} className="relative h-[250vh] md:h-[450vh] bg-white z-20">
       <div className="sticky top-0 h-screen w-full flex flex-col justify-center px-6 sm:px-16 md:px-24">
         <p className="flex flex-col gap-2 sm:gap-4 m-0 max-w-7xl w-full mx-auto">
           {parsedLines.map((line, lineIdx) => (
@@ -775,7 +780,7 @@ function BifurcacionSection() {
           width: "100%",
           height: "100%"
         }}
-        className="bg-black text-white flex flex-col justify-between py-12 md:py-0 pb-12 pt-6 px-6 sm:px-12 w-full h-auto md:h-full relative"
+        className="bg-black text-white flex flex-col justify-between pt-6 px-6 sm:px-12 w-full h-auto md:h-full relative pb-24 md:pb-12"
       >
         {/* Cabecera de la Sección (pt-36 en desktop para aire, pt-16 en móvil) */}
         <div className="w-full flex flex-col items-center mt-6 md:mt-12 pt-16 md:pt-36">
@@ -840,6 +845,17 @@ export function Home() {
       setIsMobileMenuOpen(false);
     }
   }, [isShrunk]);
+
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
 
   return (
     <div className="bg-[#f7f7f7] text-[#000014] min-h-screen relative select-none overflow-x-clip font-sans">
