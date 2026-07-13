@@ -648,7 +648,7 @@ function MacOsFolder({ title, label, href, items }: MacOsFolderProps) {
       <a
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="w-full max-w-[400px] min-w-[320px] flex-shrink-0 flex flex-col justify-center items-center cursor-pointer select-none relative group py-8"
+        className="w-full max-w-[280px] xs:max-w-[320px] md:max-w-[400px] min-w-0 md:min-w-[320px] flex-shrink-0 flex flex-col justify-center items-center cursor-pointer select-none relative group py-6 md:py-8"
         style={{ perspective: 1200 }}
       >
         <div className="w-full aspect-[1004/841] relative flex flex-col items-center justify-end">
@@ -708,7 +708,7 @@ function MacOsFolder({ title, label, href, items }: MacOsFolderProps) {
                 style={{ zIndex, backgroundColor: bgColor }}
               >
                 <div className="w-6 h-0.5 bg-black/10 rounded-full mb-2" />
-                <span className="text-[11.5px] sm:text-[12px] font-bold text-black tracking-tight leading-none font-sans">
+                <span className="text-[9.5px] xs:text-[11px] md:text-[11.5px] font-bold text-black tracking-tight leading-none font-sans">
                   {item}
                 </span>
               </motion.div>
@@ -765,7 +765,7 @@ function BifurcacionSection() {
   const padding = useTransform(scrollYProgress, [0, 1.0], ["24px", "0px"]);
 
   return (
-    <div ref={containerRef} className="relative h-screen bg-white z-20 overflow-hidden">
+    <div ref={containerRef} className="relative min-h-screen md:h-screen bg-white z-20 overflow-visible md:overflow-hidden">
       <motion.div
         style={{
           scale,
@@ -775,10 +775,10 @@ function BifurcacionSection() {
           width: "100%",
           height: "100%"
         }}
-        className="bg-black text-white flex flex-col justify-between pb-12 pt-6 px-6 sm:px-12 w-full h-full relative"
+        className="bg-black text-white flex flex-col justify-between py-12 md:py-0 pb-12 pt-6 px-6 sm:px-12 w-full h-auto md:h-full relative"
       >
-        {/* Cabecera de la Sección (pt-36 para dar aire y mt-6 para agruparlo) */}
-        <div className="w-full flex flex-col items-center mt-12 pt-36 sm:pt-32">
+        {/* Cabecera de la Sección (pt-36 en desktop para aire, pt-16 en móvil) */}
+        <div className="w-full flex flex-col items-center mt-6 md:mt-12 pt-16 md:pt-36">
           <h2
             className="text-white text-center text-xl sm:text-2xl font-bold  tracking-wider"
           >
@@ -787,7 +787,7 @@ function BifurcacionSection() {
         </div>
 
         {/* Contenedor de Carpetas brutalistas compactas estilo macOS */}
-        <div className="flex-1 w-full max-w-5xl mx-auto mt-6 mb-4 flex flex-col md:flex-row gap-12 md:gap-16 items-center justify-center relative z-20 my-auto">
+        <div className="flex-1 w-full max-w-5xl mx-auto mt-6 mb-4 flex flex-col md:flex-row gap-8 md:gap-16 items-center justify-center relative z-20 my-auto py-8 md:py-0">
           <MacOsFolder
             title="Empresas"
             label="B2B Systems"
